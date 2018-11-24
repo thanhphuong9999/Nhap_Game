@@ -84,7 +84,6 @@ public class Bomb extends AnimatedEntitiy {
                 Character character = _board.getCharacterAtExcluding((int) _x, (int) _y, null);
 		if(character != null){
                     character.kill();
-                    //Audio.playMenuSelect(); loi
                 }
                 // TODO: tao các Flame
                  _flames = new Flame[4];
@@ -101,7 +100,6 @@ public class Bomb extends AnimatedEntitiy {
 			FlameSegment e = _flames[i].flameSegmentAt(x, y);
 			if(e != null) return e;
 		}
-                
                 // TODO: am thanh bom no
 		Audio.playBombExplode();
 		

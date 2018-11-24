@@ -19,7 +19,6 @@ import uet.oop.bomberman.entities.tile.item.Item;
 import uet.oop.bomberman.level.Coordinates;
 import uet.oop.bomberman.sound.Audio;
 
-
 public class Bomber extends Character {
 
     private List<Bomb> _bombs;
@@ -27,6 +26,9 @@ public class Bomber extends Character {
     private int step = 5;
     public static List<Item> _powerups = new ArrayList<>(); 
     protected int _timeBetweenPutBombs = 0;
+    
+    Audio audio;
+    
     // Neu gia tri nay < 0 thi cho phep dat doi tuong Bomb tiep theo
     // Cu moi lan dat 1 Bomb moi, gia tri nay se duoc reset ve 0 va giam dan trong moi lan update()
     public Bomber(int x, int y, Board board) {
@@ -112,9 +114,11 @@ public class Bomber extends Character {
     @Override
     public void kill() {
         //TODO: am thanh game over
-        Audio.playVictory();
+        Audio.gameOver();
+        
         if (!_alive) return;
         _alive = false;
+
     }
 
     @Override
@@ -153,20 +157,6 @@ public class Bomber extends Character {
             _moving = false;
         }
          
-        /*
-        int xa = 0, ya = 0;
-        if(_input.left) xa--;
-        if(_input.right) xa++;
-        if(_input.up) ya--;
-        if(_input.down) ya++;
-        if(xa != 0 || ya != 0){
-            move(xa * Game.getBomberSpeed(), ya * Game.getBomberSpeed());
-            _moving = true;
-        }
-        else{
-            _moving = false;
-        }
-        */
     }
 
     @Override
@@ -222,19 +212,19 @@ public class Bomber extends Character {
             this.kill();
             return false;
         }
-        else if(e.getSprite() == Sprite.bomb){
-            return true;
-        }
         else if (e instanceof LayeredEntity) {
             return e.collide(this);
         }
         else if (e.getSprite() == Sprite.wall) {
             return false;
         }
-        else if (e instanceof Balloon) {
-            this.kill();
-            return false;
-        }
+//        else if (e instanceof Balloon) {
+//            this.kill();
+//            return false;
+//        }
+//        else if(e.getSprite() == Sprite.bomb){
+//            return true;
+//        }
         return true;
     }
     

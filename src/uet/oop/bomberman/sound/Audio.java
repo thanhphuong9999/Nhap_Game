@@ -6,29 +6,7 @@ import java.io.File;
 
 public class Audio {
 
-    Clip MenuMusic, MenuMove, MenuSelect, BombDrop, BombExplode, Victory, GameSong, walk;
-    int useless;
-
-    public Audio(int num){
-        useless = num;
-    }
-
-    public void playMenu(){
-        try{
-            AudioInputStream in1 = AudioSystem.getAudioInputStream(new File("D:/bomberman-starter/res/sound/MenuMusic.wav"));
-            MenuMusic = AudioSystem.getClip();
-            MenuMusic.open(in1);
-            MenuMusic.loop(Clip.LOOP_CONTINUOUSLY);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void stopMenu(){
-        MenuMusic.stop();
-    }
-
+    Clip MenuMove, MenuSelect, BombDrop, BombExplode, Victory, walk, MusicOpen, GameOver, hopeyou;
     public static void playMenuMove(){
         try{
             AudioInputStream in = AudioSystem.getAudioInputStream(new File("D:/bomberman-starter/res/sound/MenuMove.wav"));
@@ -84,13 +62,36 @@ public class Audio {
             clip.open(in);
             clip.start();
         }
-        catch(Exception e){e.printStackTrace();
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 
-    public void playGameSong(){
-
+    public static void playGameSong(){
+        try{
+            AudioInputStream in = AudioSystem.getAudioInputStream(new File("D:/bomberman-starter/res/sound/MusicOpen.wav"));
+            //AudioInputStream in = AudioSystem.getAudioInputStream(new File("D:/bomberman-starter/res/sound/hopeyou.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(in);
+            clip.start();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
+    
+    public static void gameOver(){
+        try{
+            AudioInputStream in = AudioSystem.getAudioInputStream(new File("D:/bomberman-starter/res/sound/GameOver.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(in);
+            clip.start();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public static void bomberWalk(){
         try{
             AudioInputStream in = AudioSystem.getAudioInputStream(new File("D:/bomberman-starter/res/sound/walk.wav"));

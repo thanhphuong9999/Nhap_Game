@@ -59,8 +59,9 @@ public class Game extends Canvas {
 		
 		_board = new Board(this, _input, screen);
                 // TODO: am thanh man
-                Audio.playVictory();
-		addKeyListener(_input);
+                //Audio.playGameSong();
+		
+                addKeyListener(_input);
 	}
 	
 	private void renderGame() {
@@ -136,7 +137,8 @@ public class Game extends Canvas {
 				}
 					
 				renderScreen();
-			} else {
+			} 
+                        else {
 				renderGame();
 			}
 				
